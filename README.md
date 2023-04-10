@@ -1,9 +1,9 @@
 # index.tsx
-<BrowserRouter>
+<!-- <BrowserRouter>
   <App />
   <Toast />
   <ReactQueryDevtools position="bottom-right" />
-</BrowserRouter>
+</BrowserRouter> -->
 
 # router.tsx
 import { ComponentType, lazy, Suspense } from 'react';
