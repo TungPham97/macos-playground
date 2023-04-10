@@ -1,9 +1,9 @@
 # index.tsx
-<!-- <BrowserRouter>
-  <App />
-  <Toast />
-  <ReactQueryDevtools position="bottom-right" />
-</BrowserRouter> -->
+BrowserRouter
+  App 
+  Toast
+  ReactQueryDevtools position="bottom-right"
+
 
 # router.tsx
 import { ComponentType, lazy, Suspense } from 'react';
@@ -15,12 +15,12 @@ import SidebarLayout from '@/layouts/SidebarLayout';
 import SuspenseLoader from '@/components/SuspenseLoader';
 
 const Loader =
-  <T extends {}>(Component: ComponentType<T>) =>
+  T extends {}>(Component: ComponentType<T>) =>
     (props: T) =>
     (
-      <Suspense fallback={<SuspenseLoader />}>
-        <Component {...props} />
-      </Suspense>
+      Suspense fallback={SuspenseLoader />}>
+        Component {...props} />
+      /Suspense>
     );
 
 const Status404 = Loader(lazy(() => import('@/...')));
@@ -28,25 +28,25 @@ const Status404 = Loader(lazy(() => import('@/...')));
 const routes = (isLogged: boolean) => [
   {
     path: '/',
-    element: !isLogged ? <BaseLayout /> : <Navigate to="/setting" />,
+    element: !isLogged ? BaseLayout /> : Navigate to="/setting" />,
     children: [
       {
         path: 'login',
-        element: <Login />,
+        element: Login />,
       },
       {
         path: '*',
-        element: <Status404 />,
+        element: Status404 />,
       },
     ],
   },
   {
     path: '/',
-    element: isLogged ? <SidebarLayout /> : <Navigate to="/login" />,
+    element: isLogged ? SidebarLayout /> : Navigate to="/login" />,
     children: [
       {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: Dashboard />,
       },
     ],
   },
@@ -57,9 +57,9 @@ export default routes;
 # App.tsx
 const content = useRoutes(router(Boolean(isLogged)));
 
-<ModalProvider>
+ModalProvider>
     {content}
-</ModalProvider>
+ModalProvider>
 
 
 # BaseLayout
@@ -68,9 +68,9 @@ import { Outlet } from 'react-router-dom';
 
 const BaseLayout: FC = ({ children }) => {
   return (
-    <div>
-      {children || <Outlet />}
-    </div>
+    div>
+      {children || Outlet />}
+    div>
   );
 };
 
@@ -86,19 +86,19 @@ interface SidebarLayoutProps {
   children?: ReactNode;
 }
 
-const SidebarLayout: FC<SidebarLayoutProps> = () => {
+const SidebarLayout: FCSidebarLayoutProps> = () => {
   return (
     <>
-      <Box>
-        <Header />
-        <Sidebar />
-        <Box>
-          <Box>
-            <RouteGuard />
-          </Box>
-        </Box>
-      </Box>
-      {isFetching || isMutating ? <SuspenseLoader /> : null}
+      Box>
+        Header />
+        Sidebar />
+        Box>
+          Box>
+            RouteGuard />
+          /Box>
+        /Box>
+      /Box>
+      {isFetching || isMutating ? SuspenseLoader /> : null}
     </>
   );
 };
@@ -112,7 +112,7 @@ import { Outlet, useLocation } from 'react-router';
 export const RouteGuard = () => {
   const { pathname } = useLocation();
 
-  if (!allowedPath.length) return <Outlet />;
+  if (!allowedPath.length) return Outlet />;
 
-  return <>{allowedPath.includes(pathname) ? <Outlet /> : <Status403 />}</>;
+  return <>{allowedPath.includes(pathname) ? Outlet /> : Status403 />}</>;
 };
